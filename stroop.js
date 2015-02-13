@@ -1,10 +1,21 @@
 var wait = true;
 var input = new Array();
 var pairs = new Array();
+var pairs_temp = new Array();
+var num_trials = 10;
 var colors = [["red", "#FF0000"],
 			  ["green", "#00FF00"],
 			  ["blue", "#0000FF"],
 			  ["yellow", "#FFFF00"]];
+var len = colors.length;
+for (var ii = 0; ii < len; ii++) {
+	for (var jj = 0; jj < len; jj++) {
+		if (ii != jj) {
+			pairs[pairs.length] = [colors[ii][0], colors[jj][1]];
+		}
+	}
+}
+pairs_temp = pairs.slice();
 var count = 1;
 var is_test = false;
 
@@ -13,8 +24,7 @@ function KeyHandler() {
 		//wait = false;
 		//document.write(wait);
 		input[input.length] = String.fromCharCode(e.keyCode);
-		count++;
-		if (pairs) {
+		if (num_trials >= 0) {
 			next_stroop();
 			alert("ready for the next color?");
 		}
@@ -22,53 +32,24 @@ function KeyHandler() {
 }
 
 
-//for (var z = 0; z <= 5; z++){
+
 $(document).ready(function() {
-	stroop(3);
 	KeyHandler();
 });
-//}*/
-    
 
-
-function stroop (num_pairs) {
-	this.valid_pairs = new Array();
-	for (var i = 0; i < colors.length; i++) {
-		var temp_color = colors[0];
-		colors.shift();
-		colors[colors.length] = temp_color;
-		this.valid_pairs[i] = colors.slice();
-	}	
-
-	var word_num = null;
-	var prev_word = null;
-	var color_num = null;
-	var color = null;
-	for (var j = 0; j < num_pairs; j++) {
-		wait = true;
-
-		word_num = Math.floor((Math.random() * colors.length));
-
-		while (word_num == prev_word) {
-			word_num = Math.floor((Math.random() * colors.length));
-		}
-		prev_word = word_num;
-		var color_num = Math.floor((Math.random() * (colors.length - 1)) + 1);
-		var word = this.valid_pairs[word_num][0][0];
-		var color = this.valid_pairs[word_num][color_num][1];
-		pairs[pairs.length] = [word, color];
-	}
-}
 
 function next_stroop() {
-	var display_word = "<font color=\"";
-	display_word += pairs[0][1];
-	display_word += "\">";
-	display_word += pairs[0][0];
-	display_word += "</font>";
-	$("#container").html(display_word);
-	pairs.shift();
-	
+	if (pairs_temp) {
+		var index = Math.floor(Math.random() * pairs_temp.length);
+		var display_word = "<font color=\"";
+		display_word += pairs_temp[index][1];
+		display_word += "\">";
+		display_word += pairs_temp[index][0];
+		display_word += "</font>";
+		$("#container").html(display_word);
+		pairs_temp.splice(index,1);
+	}
+
 }
 
 
