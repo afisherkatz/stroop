@@ -7,25 +7,25 @@ var colors = [["red", "#FF0000"],
 			  ["yellow", "#FFFF00"]];
 var count = 1;
 var is_test = false;
+
 function KeyHandler() {
-	$(document).on({
-		keypress: function(e) {
-			//wait = false;
-			//document.write(wait);
-			input[input.length] = String.fromCharCode(e.keyCode);
-			count++;
-			if (pairs) {
-				document.write(count);
-				next_stroop();
-			}
+	$(document).on('keydown', function(e) {
+		//wait = false;
+		//document.write(wait);
+		input[input.length] = String.fromCharCode(e.keyCode);
+		count++;
+		if (pairs) {
+			next_stroop();
+			alert("ready for the next color?");
 		}
 	});
 }
 
+
 //for (var z = 0; z <= 5; z++){
-	$(document).ready(function(){
-		
-		KeyHandler();
+$(document).ready(function() {
+	stroop(3);
+	KeyHandler();
 });
 //}*/
     
@@ -61,8 +61,14 @@ function stroop (num_pairs) {
 }
 
 function next_stroop() {
-	document.write(pairs[0][0].fontcolor(pairs[0][1]));
+	var display_word = "<font color=\"";
+	display_word += pairs[0][1];
+	display_word += "\">";
+	display_word += pairs[0][0];
+	display_word += "</font>";
+	$("#container").html(display_word);
 	pairs.shift();
+	
 }
 
-stroop(600);
+
