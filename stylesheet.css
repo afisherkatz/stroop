@@ -1,0 +1,61 @@
+#container {
+	width: 300px;
+	height: 200px;
+	font-size: 25;
+	border: 1px solid black;
+	position: relative;
+	background-color: black;
+}
+
+#red {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 30px;
+	width: 70px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+#green {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 30px;
+	width: 70px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+#blue {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 30px;
+	width: 70px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+#yellow {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height: 30px;
+	width: 70px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+#word {
+	position: absolute;
+	top: 50px;
+	left: 120px;
+}
+
+#center-cross {
+	position: absolute;
+	top: 80px;
+	left: 140px;
+	color: white;
+}

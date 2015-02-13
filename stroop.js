@@ -21,12 +21,42 @@ pairs_temp = pairs.slice();
 var count = 1;
 var is_test = false;
 
+var ready = true;
 function KeyHandler() {
-	$(document).on('keydown', function(e) {
-		input[input.length] = String.fromCharCode(e.keyCode);
-		if (num_trials > 1) {
-			next_stroop();
-			alert("ready for the next color?");
+	$("#red").on('mouseenter', function(e) {
+		if (ready) {
+			input[input.length] = "red";
+			ready = false;
+		}
+	});
+
+	$("#green").on('mouseenter', function(e) {
+		if (ready) {
+			input[input.length] = "green";
+			ready = false;
+		}
+	});
+
+	$("#blue").on('mouseenter', function(e) {
+		if (ready) {
+			input[input.length] = "blue";
+			ready = false;
+		}
+	});
+
+	$("#yellow").on('mouseenter', function(e) {
+		if (ready) {
+			input[input.length] = "yellow";
+			ready = false;
+		}
+	});
+
+	$("#center-cross").on('mouseenter', function(e) {
+		if (!ready) {
+			if (num_trials > 1) {
+				next_stroop();
+			}
+			ready = true;
 		}
 	});
 }
@@ -47,7 +77,7 @@ function next_stroop() {
 		display_word += "\">";
 		display_word += pairs_temp[index][0];
 		display_word += "</font>";
-		$("#container").html(display_word);
+		$("#word").html(display_word);
 		pairs_temp.splice(index,1);
 		num_trials--;
 	} else {
