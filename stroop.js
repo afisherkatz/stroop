@@ -7,18 +7,16 @@ var colors = [["red", "#FF0000"],
 			  ["yellow", "#FFFF00"]];
 var count = 1;
 var is_test = false;
-function KeyHandler(test) {
+function KeyHandler() {
 	$(document).on({
 		keypress: function(e) {
-			test = true
 			//wait = false;
 			//document.write(wait);
 			input[input.length] = String.fromCharCode(e.keyCode);
-			document.write(count);
 			count++;
-			while (pairs) {
+			if (pairs) {
+				document.write(count);
 				next_stroop();
-				return false
 			}
 		}
 	});
@@ -27,8 +25,7 @@ function KeyHandler(test) {
 //for (var z = 0; z <= 5; z++){
 	$(document).ready(function(){
 		
-		KeyHandler(is_test);
-	}
+		KeyHandler();
 });
 //}*/
     
